@@ -1,0 +1,158 @@
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ffe5e5, #fffafa);
+    color: #493030;
+}
+
+.header {
+    text-align: center;
+    padding: 25px 10px;
+    background-color: #ffd1d1;
+}
+
+.logo {
+    font-family: Arial, sans-serif;
+    font-size: 75px;
+    font-weight: bold;
+    letter-spacing: -4px;
+    margin-bottom: 20px;
+}
+
+.g-blue {
+    color: #4285F4;
+}
+
+.g-red {
+    color: #EA4335;
+}
+
+.g-yellow {
+    color: #FBBC05;
+}
+
+.g-green {
+    color: #34A853;
+}
+
+.navigation a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #d93636;
+    color: white;
+    padding: 12px 28px;
+    margin: 5px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.navigation a:hover {
+    background-color: #8b1717;
+    color: #ffe3a3;
+}
+
+.form-box {
+    width: 380px;
+    max-width: 85%;
+    margin: 35px auto;
+    padding: 25px;
+    background-color: white;
+    border: 2px solid #f0b2b2;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #e5c5c5;
+    box-sizing: border-box;
+}
+
+.form-box h2 {
+    text-align: center;
+    color: #b52222;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.form-row {
+    margin-bottom: 18px;
+}
+
+.form-row label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d9aaaa;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+.form-row textarea {
+    resize: vertical;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    outline: 2px solid #d93636;
+}
+
+.radio-options {
+    padding: 5px 0;
+}
+
+.radio-options input,
+.agreement input {
+    width: auto;
+}
+
+.agreement {
+    margin: 15px 0;
+}
+
+.button-row {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.button-row input {
+    background-color: #d93636;
+    color: white;
+    border: none;
+    padding: 11px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.button-row input:hover {
+    background-color: #8b1717;
+}
+
+.thank-box {
+    width: 80%;
+    margin: 50px auto;
+    padding: 25px;
+    background-color: white;
+    border: 2px solid #f0b2b2;
+    border-radius: 12px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.thank-box h1 {
+    color: #b52222;
+}
+
+.footer {
+    text-align: center;
+    padding: 12px;
+    background-color: #ffd1d1;
+    margin-top: 30px;
+}
