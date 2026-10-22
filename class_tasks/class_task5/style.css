@@ -1,0 +1,178 @@
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+}
+
+.header {
+    background-color: #3976c5;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navigation button {
+    padding: 10px 18px;
+    margin-left: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.navigation button:nth-child(1) {
+    background-color: #1565c0;
+    color: white;
+}
+
+.navigation button:nth-child(2) {
+    background-color: #238636;
+    color: white;
+}
+
+.navigation button:nth-child(3) {
+    background-color: #ffdf4d;
+    color: black;
+}
+
+.form-box {
+    width: 350px;
+    margin: 70px auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 12px #cccccc;
+}
+
+h2 {
+    text-align: center;
+    color: #3976c5;
+}
+
+.form-row {
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-row input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px;
+    border: 1px solid #b8cde8;
+    border-radius: 5px;
+    background-color: #edf5ff;
+}
+
+.button-row {
+    text-align: center;
+}
+
+.button-row input {
+    padding: 10px 30px;
+    background-color: #3976c5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#message {
+    text-align: center;
+    font-weight: bold;
+}
+
+.footer {
+    background-color: #3976c5;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Blue Theme */
+
+.blue {
+    background-color: #eaf3ff;
+}
+
+.blue .header,
+.blue .footer {
+    background-color: #3976c5;
+}
+
+.blue .form-row input {
+    background-color: #edf5ff;
+}
+
+.blue h2 {
+    color: #3976c5;
+}
+
+.blue .button-row input {
+    background-color: #3976c5;
+}
+
+/* Green Theme */
+
+.green {
+    background-color: #eaf7ed;
+}
+
+.green .header,
+.green .footer {
+    background-color: #26834a;
+}
+
+.green .form-row input {
+    background-color: #e8f8ed;
+    border-color: #a4d6b2;
+}
+
+.green h2 {
+    color: #26834a;
+}
+
+.green .button-row input {
+    background-color: #26834a;
+}
+
+/* Yellow Theme */
+
+.yellow {
+    background-color: #fff9df;
+}
+
+.yellow .header,
+.yellow .footer {
+    background-color: #e4bd35;
+    color: #302700;
+}
+
+.yellow .form-row input {
+    background-color: #fff9df;
+    border-color: #e8d57f;
+}
+
+.yellow h2 {
+    color: #987500;
+}
+
+.yellow .button-row input {
+    background-color: #e4bd35;
+    color: #302700;
+}
