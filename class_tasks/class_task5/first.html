@@ -1,0 +1,53 @@
+
+<html>
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="page">
+
+    <div class="header">
+        <div class="logo">
+            Registration Form
+        </div>
+<br><br>
+        <div class="navigation">
+            <button onclick="changeTheme('blue')">Blue</button>
+            <button onclick="changeTheme('green')">Green</button>
+            <button onclick="changeTheme('yellow')">Yellow</button>
+        </div>
+    </div>
+
+    <div class="form-box">
+        <h2>Login</h2>
+
+        <form onsubmit="return loginUser(event)">
+
+            <div class="form-row">
+                <label>User Name:</label>
+                <input type="text" id="username" required>
+            </div>
+
+            <div class="form-row">
+                <label>Password:</label>
+                <input type="password" id="password" required>
+            </div>
+
+            <div class="button-row">
+                <input type="submit" value="Login">
+            </div>
+
+            <p id="message"></p>
+
+        </form>
+    </div>
+
+    <div class="footer">
+        <p>2026</p>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
