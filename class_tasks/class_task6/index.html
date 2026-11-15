@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Performance Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Student Performance Management System</h1>
+    <div class="theme-switcher">
+      <span>Theme:</span>
+      <button class="theme-btn theme-ocean" onclick="changeTheme('ocean')" title="Ocean Blue Theme">Ocean</button>
+      <button class="theme-btn theme-mint" onclick="changeTheme('mint')" title="Mint Green Theme">Mint</button>
+      <button class="theme-btn theme-rose" onclick="changeTheme('rose')" title="Rose Red Theme">Rose</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Registration form -->
+    <section class="card">
+      <h2>Student Registration</h2>
+      <form id="studentForm" novalidate onsubmit="event.preventDefault(); addStudent();">
+        <div class="form-grid">
+          <div class="field">
+            <label for="name">Student Name</label>
+            <input type="text" id="name" placeholder="e.g. Ali" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="regNo">Registration Number</label>
+            <input type="text" id="regNo" placeholder="e.g. FA24-001" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="programming">Programming</label>
+            <input type="number" id="programming" min="0" max="100" placeholder="0 - 100">
+          </div>
+          <div class="field">
+            <label for="mathematics">Mathematics</label>
+            <input type="number" id="mathematics" min="0" max="100" placeholder="0 - 100">
+          </div>
+          <div class="field">
+            <label for="english">English</label>
+            <input type="number" id="english" min="0" max="100" placeholder="0 - 100">
+          </div>
+          <div class="field">
+            <label for="database">Database</label>
+            <input type="number" id="database" min="0" max="100" placeholder="0 - 100">
+          </div>
+          <div class="field">
+            <label for="networks">Computer Networks</label>
+            <input type="number" id="networks" min="0" max="100" placeholder="0 - 100">
+          </div>
+        </div>
+        <button type="submit" class="btn primary">Add Student</button>
+      </form>
+    </section>
+
+    <!-- Performance summary -->
+    <section class="card">
+      <h2>Performance Summary</h2>
+      <div class="summary">
+        <div class="stat">
+          <span class="label">Total Students</span>
+          <span class="value" id="totalStudents">0</span>
+        </div>
+        <div class="stat">
+          <span class="label">Class Average</span>
+          <span class="value" id="classAverage">0%</span>
+        </div>
+        <div class="stat">
+          <span class="label">Top Student</span>
+          <span class="value small" id="topStudent">-</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results table -->
+    <section class="card">
+      <div class="table-head">
+        <h2>Student Results</h2>
+        <div class="tools">
+          <input type="text" id="searchBox" placeholder="Search by reg. no. or name" oninput="renderTable()">
+          <button class="btn" onclick="toggleSort()" id="sortBtn">Sort by %</button>
+          <button class="btn danger" onclick="clearAll()">Clear All</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Reg. No</th>
+              <th>Student</th>
+              <th>Total</th>
+              <th>Percentage</th>
+              <th>Grade</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+      <p id="emptyMsg" class="empty">No students added yet.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
