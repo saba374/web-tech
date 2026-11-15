@@ -1,23 +1,358 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Home Tasks</title>
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Tasks | Saba Batool</title>
+  
+  <style>
+    /* Default Palette 1: Classic Navy & Teal */
+    :root {
+      --primary: #1a365d;
+      --accent: #0d9488;
+      --accent-hover: #0f766e;
+      --accent-bg: #f0fdfa;
+      --accent-border: #ccfbf1;
+      --text-dark: #1e293b;
+      --text-muted: #475569;
+      --bg-page: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
 
+    /* Palette 2: Deep Emerald & Forest */
+    body[data-theme="emerald"] {
+      --primary: #064e3b;
+      --accent: #059669;
+      --accent-hover: #047857;
+      --accent-bg: #ecfdf5;
+      --accent-border: #a7f3d0;
+    }
+
+    /* Palette 3: Royal Burgundy & Plum */
+    body[data-theme="burgundy"] {
+      --primary: #701a75;
+      --accent: #c026d3;
+      --accent-hover: #a21caf;
+      --accent-bg: #fdf4ff;
+      --accent-border: #f5d0fe;
+    }
+
+    /* Palette 4: Modern Indigo & Cobalt */
+    body[data-theme="indigo"] {
+      --primary: #1e1b4b;
+      --accent: #4f46e5;
+      --accent-hover: #4338ca;
+      --accent-bg: #eef2ff;
+      --accent-border: #c7d2fe;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 25px 15px;
+      transition: background-color 0.25s ease;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    /* Top Navigation Bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--card-bg);
+      color: var(--primary);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      box-shadow: var(--card-shadow);
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background-color: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .color-btn {
+      background-color: var(--card-bg);
+      color: var(--primary);
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.15s ease, background-color 0.2s ease;
+    }
+
+    .color-btn:hover {
+      transform: scale(1.04);
+      border-color: var(--primary);
+    }
+
+    .color-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      display: inline-block;
+    }
+
+    /* Header Banner */
+    .header-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--accent);
+      border-radius: 10px;
+      padding: 28px 30px;
+      margin-bottom: 25px;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      transition: border-top-color 0.3s ease;
+    }
+
+    .header-card h1 {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+      transition: color 0.3s ease;
+    }
+
+    .header-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Tasks Grid */
+    .tasks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .task-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 22px;
+      text-decoration: none;
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--card-shadow);
+      transition: all 0.2s ease;
+    }
+
+    .task-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+      border-left-color: var(--primary);
+    }
+
+    .task-badge {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--accent-bg);
+      color: var(--accent);
+      border: 1px solid var(--accent-border);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .task-card h3 {
+      font-size: 1.18rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+      transition: color 0.3s ease;
+    }
+
+    .task-card .task-path {
+      font-family: Consolas, monospace;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      word-break: break-all;
+    }
+
+    .task-card .card-action {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: auto;
+      transition: color 0.3s ease;
+    }
+
+    .task-card:hover .card-action {
+      color: var(--primary);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      padding: 15px 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+      }
+      .header-card {
+        padding: 20px;
+      }
+      .top-bar {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
 <body>
 
-<center>
+  <div class="container">
 
-    <h1><u>HOME TASKS</u></h1>
+    <!-- Top Navigation -->
+    <div class="top-bar">
+      <a href="../index.html" class="back-btn">&larr; Back to Portfolio</a>
+      <button class="color-btn" id="changeColorBtn" title="Click to cycle color schemes">
+        <span class="color-indicator"></span>
+        <span id="colorName">Theme: Navy & Teal</span>
+      </button>
+    </div>
 
-    <br><br>
+    <!-- Header Banner -->
+    <header class="header-card">
+      <h1>Home Tasks</h1>
+      <p>Independent practical assignments and weekly homework &bull; Saba Batool (FA24B1-CS-018)</p>
+    </header>
 
-   
-    <a href="home_task1/home_task1.html">HOME TASK 1</a>
-    <br><br>
-   <a href="home_task2/home_task2.html">HOME TASK 2</a>
-     <br><br>
-   <a href="home_task3/index.html">HOME TASK 3</a>
-</center>
+    <!-- Tasks Grid -->
+    <div class="tasks-grid">
+      
+      <!-- Home Task 1 -->
+      <a href="home_task1/home_task1.html" class="task-card">
+        <div>
+          <span class="task-badge">Assignment 01</span>
+          <h3>Home Task 1</h3>
+          <div class="task-path">home_task1/home_task1.html</div>
+        </div>
+        <div class="card-action">Open Task &rarr;</div>
+      </a>
+
+      <!-- Home Task 2 -->
+      <a href="home_task2/home_task2.html" class="task-card">
+        <div>
+          <span class="task-badge">Assignment 02</span>
+          <h3>Home Task 2</h3>
+          <div class="task-path">home_task2/home_task2.html</div>
+        </div>
+        <div class="card-action">Open Task &rarr;</div>
+      </a>
+
+      <!-- Home Task 3 -->
+      <a href="home_task3/index.html" class="task-card">
+        <div>
+          <span class="task-badge">Assignment 03</span>
+          <h3>Home Task 3</h3>
+          <div class="task-path">home_task3/index.html</div>
+        </div>
+        <div class="card-action">Open Task &rarr;</div>
+      </a>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; <span id="year"></span> Saba Batool &bull; Web Technologies Home Tasks</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Professional Color Themes
+    const themes = [
+      { id: 'default', name: 'Navy & Teal' },
+      { id: 'emerald', name: 'Emerald Green' },
+      { id: 'burgundy', name: 'Royal Plum' },
+      { id: 'indigo', name: 'Modern Indigo' }
+    ];
+
+    let currentThemeIndex = 0;
+    const colorBtn = document.getElementById('changeColorBtn');
+    const colorName = document.getElementById('colorName');
+
+    function setTheme(index) {
+      currentThemeIndex = index;
+      const theme = themes[index];
+      
+      if (theme.id === 'default') {
+        document.body.removeAttribute('data-theme');
+      } else {
+        document.body.setAttribute('data-theme', theme.id);
+      }
+      
+      colorName.textContent = 'Theme: ' + theme.name;
+      localStorage.setItem('preferred_color_theme', theme.id);
+    }
+
+    // Load saved theme from localStorage
+    const savedTheme = localStorage.getItem('preferred_color_theme');
+    if (savedTheme) {
+      const foundIndex = themes.findIndex(t => t.id === savedTheme);
+      if (foundIndex !== -1) {
+        setTheme(foundIndex);
+      }
+    }
+
+    // Click button to cycle color themes
+    colorBtn.addEventListener('click', function() {
+      const nextIndex = (currentThemeIndex + 1) % themes.length;
+      setTheme(nextIndex);
+    });
+  </script>
 
 </body>
 </html>
