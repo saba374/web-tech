@@ -1,29 +1,593 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Web Technologies</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saba Batool | Web Technologies Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-color: #0d1117;
+      --card-bg: rgba(22, 27, 34, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --accent-color: #6366f1;
+      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      --accent-glow: rgba(99, 102, 241, 0.25);
+      --hover-bg: rgba(255, 255, 255, 0.05);
+      --badge-bg: rgba(99, 102, 241, 0.15);
+      --badge-text: #a5b4fc;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-color: #f8fafc;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(0, 0, 0, 0.08);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent-color: #4f46e5;
+      --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
+      --accent-glow: rgba(79, 70, 229, 0.15);
+      --hover-bg: rgba(0, 0, 0, 0.03);
+      --badge-bg: rgba(79, 70, 229, 0.1);
+      --badge-text: #4338ca;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      line-height: 1.6;
+    }
+
+    /* Subtle Animated Background Elements */
+    .bg-blobs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      filter: blur(100px);
+      opacity: 0.25;
+      border-radius: 50%;
+      animation: float 20s infinite alternate ease-in-out;
+    }
+
+    .blob-1 {
+      width: 450px;
+      height: 450px;
+      background: #6366f1;
+      top: -100px;
+      right: -50px;
+    }
+
+    .blob-2 {
+      width: 350px;
+      height: 350px;
+      background: #ec4899;
+      bottom: -50px;
+      left: -50px;
+      animation-delay: -5s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 40px) scale(1.1); }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-brand i {
+      color: var(--accent-color);
+      font-size: 1.3rem;
+    }
+
+    .theme-toggle-btn {
+      background: var(--hover-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 0.5rem 0.9rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .theme-toggle-btn:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+
+    /* Hero / Profile Section */
+    .hero-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent-gradient);
+    }
+
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .profile-info {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .course-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+    }
+
+    .hero-name {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--hover-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .meta-pill i {
+      color: var(--accent-color);
+    }
+
+    .meta-pill:hover {
+      border-color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    /* About Section */
+    .section-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2.2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-main);
+    }
+
+    .section-title i {
+      color: var(--accent-color);
+    }
+
+    .about-text {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .interests-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .interest-tag {
+      padding: 0.35rem 0.9rem;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+    }
+
+    /* Interactive Task Cards Grid */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .work-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.8rem;
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .work-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent-color);
+      box-shadow: 0 12px 30px var(--accent-glow);
+    }
+
+    .work-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    .work-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--badge-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--accent-color);
+      transition: var(--transition);
+    }
+
+    .work-card:hover .work-icon-box {
+      transform: scale(1.08);
+      background: var(--accent-color);
+      color: #fff;
+    }
+
+    .arrow-icon {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+
+    .work-card:hover .arrow-icon {
+      color: var(--accent-color);
+      transform: translateX(4px);
+    }
+
+    .work-card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .work-card-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .work-card-footer {
+      display: flex;
+      align-items: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      gap: 0.4rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2.5rem 0 1rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-highlight {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    @media (max-width: 640px) {
+      .hero-card {
+        padding: 2rem 1.5rem;
+      }
+      .meta-pills {
+        flex-direction: column;
+      }
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-<center>
-<h1><u>WEB TECHNOLOGIES</u></h1>
-<h2>SABA BATOOL</h2>
-BCS-V-A
-<br><br><br> 
-<h2>MY WORK</h2>
-<br> 
-<table border="1" width="70%" cellpadding="15">
-<tr> <th>CLASS TASKS</th>
-<td> <a href="class_tasks/index.html">Class Tasks</a> </td>
-</tr>
-<tr> <th>HOME TASKS</th>
-<td> <a href="home_tasks/index.html">Home Tasks</a> </td>
-</tr>
-<tr> <th>ASSIGNMENTS</th> 
-<td> <a href="assignments/index.html">Assignments</a> </td>
-</tr> 
-<tr> <th>QUIZES</th> 
-<td> <a href="quizes/index.html">Quizes</a> </td> 
-</tr> 
-</table> 
-</center> 
+  <!-- Ambient background lighting -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <div class="container">
+    <!-- Navbar -->
+    <nav>
+      <div class="nav-brand">
+        <i class="fa-solid fa-code"></i>
+        <span>Web Technologies</span>
+      </div>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Theme">
+        <i class="fa-regular fa-moon" id="themeIcon"></i>
+        <span id="themeText">Dark Mode</span>
+      </button>
+    </nav>
+
+    <!-- Hero / Profile Header -->
+    <header class="hero-card">
+      <div class="hero-top">
+        <div class="profile-info">
+          <div class="course-badge">
+            <i class="fa-solid fa-graduation-cap"></i> Course Portal &bull; BCS-V-A
+          </div>
+          <h1 class="hero-name">Saba Batool</h1>
+          <p class="hero-sub">Computer Science Student &bull; Fatima Jinnah Women University</p>
+          
+          <div class="meta-pills">
+            <span class="meta-pill">
+              <i class="fa-solid fa-id-badge"></i>
+              <strong>Roll No:</strong> FA24B1-CS-018
+            </span>
+            <a href="mailto:fa24b1-cs-018@fjwu.edu.pk" class="meta-pill">
+              <i class="fa-solid fa-envelope"></i>
+              fa24b1-cs-018@fjwu.edu.pk
+            </a>
+            <span class="meta-pill">
+              <i class="fa-solid fa-book-bookmark"></i>
+              Web Technologies
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- About Me Section -->
+    <section class="section-card">
+      <h2 class="section-title">
+        <i class="fa-regular fa-user"></i> About Me
+      </h2>
+      <p class="about-text">
+        I am Saba Batool, a Computer Science student at Fatima Jinnah Women University, currently pursuing my 5th semester. I have a strong interest in technology, particularly Artificial Intelligence, Machine Learning, and Web Development. I enjoy learning new skills, solving problems, and exploring innovative ideas. I am continuously working to improve my programming and technical abilities through academic projects and practical experience. My goal is to become a skilled professional in the field of technology, pursue higher education abroad, and contribute to meaningful projects through my knowledge and creativity.
+      </p>
+      
+      <div class="interests-tags">
+        <span class="interest-tag"><i class="fa-solid fa-brain"></i> Artificial Intelligence</span>
+        <span class="interest-tag"><i class="fa-solid fa-network-wired"></i> Machine Learning</span>
+        <span class="interest-tag"><i class="fa-brands fa-html5"></i> Web Development</span>
+        <span class="interest-tag"><i class="fa-solid fa-code"></i> Problem Solving</span>
+        <span class="interest-tag"><i class="fa-solid fa-laptop-code"></i> Software Engineering</span>
+      </div>
+    </section>
+
+    <!-- Work Directory Cards -->
+    <section class="section-card">
+      <h2 class="section-title">
+        <i class="fa-solid fa-folder-open"></i> Coursework & Submissions
+      </h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+        Explore all practical coursework, laboratory assessments, and evaluation files organized by category.
+      </p>
+
+      <div class="work-grid">
+        <!-- Class Tasks Box -->
+        <a href="class_tasks/index.html" class="work-card">
+          <div>
+            <div class="work-card-header">
+              <div class="work-icon-box">
+                <i class="fa-solid fa-chalkboard-user"></i>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+            </div>
+            <h3 class="work-card-title">Class Tasks</h3>
+            <p class="work-card-desc">Interactive laboratory exercises, hands-on tutorials, and live in-class coding challenges.</p>
+          </div>
+          <div class="work-card-footer">
+            <span>Browse Tasks</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </a>
+
+        <!-- Home Tasks Box -->
+        <a href="home_tasks/index.html" class="work-card">
+          <div>
+            <div class="work-card-header">
+              <div class="work-icon-box">
+                <i class="fa-solid fa-house-laptop"></i>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+            </div>
+            <h3 class="work-card-title">Home Tasks</h3>
+            <p class="work-card-desc">Comprehensive assignments, practice projects, and homework exercises assigned during the semester.</p>
+          </div>
+          <div class="work-card-footer">
+            <span>Browse Tasks</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </a>
+
+        <!-- Quizzes Box -->
+        <a href="quizes/index.html" class="work-card">
+          <div>
+            <div class="work-card-header">
+              <div class="work-icon-box">
+                <i class="fa-solid fa-file-circle-check"></i>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square arrow-icon"></i>
+            </div>
+            <h3 class="work-card-title">Quizzes</h3>
+            <p class="work-card-desc">Class quizzes, concept checks, and timed assessment files for Web Technologies.</p>
+          </div>
+          <div class="work-card-footer">
+            <span>View Quizzes</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; <span id="currentYear"></span> <span class="footer-highlight">Saba Batool</span> (FA24B1-CS-018) &bull; Fatima Jinnah Women University</p>
+      <p style="font-size: 0.8rem; margin-top: 0.4rem; opacity: 0.7;">Web Technologies Academic Portfolio</p>
+    </footer>
+  </div>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // Set Current Year Dynamically
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Dark/Light Theme Toggle
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeIcon.className = 'fa-regular fa-sun';
+        themeText.textContent = 'Light Mode';
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.className = 'fa-regular fa-moon';
+        themeText.textContent = 'Dark Mode';
+      }
+      localStorage.setItem('preferred-theme', theme);
+    }
+
+    // Load persisted theme or default to dark
+    const savedTheme = localStorage.getItem('preferred-theme') || 'dark';
+    applyTheme(savedTheme);
+
+    themeToggleBtn.addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      applyTheme(isLight ? 'dark' : 'light');
+    });
+  </script>
 </body>
 </html>
